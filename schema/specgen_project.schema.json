@@ -1,0 +1,371 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://kicad-specgen/schema/specgen_project.schema.json",
+  "title": "kicad_specgen_project",
+  "description": "SpecGen project file. JSON format. Token references only \u2014 no absolute paths.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "workspace",
+    "project"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "workspace": {
+      "type": "object",
+      "required": [
+        "mode",
+        "environment"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "repo",
+            "standalone"
+          ],
+          "description": "repo: project is in a Git-managed workspace. standalone: independent folder."
+        },
+        "environment": {
+          "type": "string",
+          "description": "Environment ID from kicad_specgen_company.json environments"
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "description": "Project identity and metadata. All fields available as Jinja2 template variables.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Short project identifier, used in output filenames"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Full human-readable project name for display and report cover"
+        },
+        "document_number": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "engineer": {
+          "type": "string",
+          "description": "Lead engineer name"
+        },
+        "company": {
+          "type": "string",
+          "description": "Company or client name for this project"
+        },
+        "date": {
+          "type": "string",
+          "description": "Release or document date"
+        },
+        "copyright": {
+          "type": "string"
+        },
+        "release_name": {
+          "type": "string",
+          "description": "Release label e.g. Production Release v1.0"
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "description": "Tokenized project support file references. All values must use {TOKEN_NAME}/... notation. Note: active jobset reference is in jobset.active_jobset, not here.",
+      "properties": {
+        "kicad_pro": {
+          "type": "string",
+          "description": "Token reference to .kicad_pro file"
+        },
+        "logo": {
+          "type": "string",
+          "description": "Token reference to logo image file"
+        },
+        "report_css": {
+          "type": "string",
+          "description": "Token reference to report CSS stylesheet"
+        },
+        "bom_css": {
+          "type": "string",
+          "description": "Token reference to BOM CSS stylesheet"
+        },
+        "title_page": {
+          "type": "string",
+          "description": "Token reference to title page Markdown template"
+        },
+        "end_page": {
+          "type": "string",
+          "description": "Token reference to end page Markdown template"
+        }
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "variables": {
+      "type": "object",
+      "description": "Custom user/project variables available as Jinja2 template tokens",
+      "properties": {
+        "custom": {
+          "type": "object",
+          "description": "Key-value pairs. Keys must match ^[A-Z][A-Z0-9_]*$. Values are strings.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "jobset": {
+      "type": "object",
+      "description": "Jobset state. SpecGen overrides stored here, never written back to .kicad_jobset.",
+      "properties": {
+        "active_jobset": {
+          "type": "string",
+          "description": "Token reference to the active .kicad_jobset file. Single authoritative jobset reference."
+        },
+        "stop_on_error": {
+          "type": "boolean",
+          "default": true,
+          "description": "Halt run on first destination failure"
+        },
+        "clear_log_before_run": {
+          "type": "boolean",
+          "default": true,
+          "description": "Clear the Output Log subtab before each run"
+        },
+        "destinations": {
+          "type": "object",
+          "description": "Per-destination-ID SpecGen overrides, keyed by destination ID from .kicad_jobset",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "selected": {
+                "type": "boolean"
+              },
+              "heading_override": {
+                "type": "string"
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "last_run": {
+          "type": "object",
+          "description": "Result of the most recent jobset run. Written by SpecGen after each run.",
+          "properties": {
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "success",
+                "failure",
+                "partial"
+              ]
+            },
+            "destinations_run": {
+              "type": "integer"
+            },
+            "destinations_succeeded": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "report": {
+      "type": "object",
+      "description": "Report recipe and output settings. See SpecGen_Tab_Report.md for full behavior.",
+      "properties": {
+        "output_dir": {
+          "type": "string",
+          "description": "Token reference to report output folder. Default: {JOBSET_OUTPUT_DIR}/report/"
+        },
+        "filename_template": {
+          "type": "string",
+          "description": "Filename template for the output PDF. Supports project metadata tokens.",
+          "examples": [
+            "{project_name}_{revision}_{date}_report.pdf"
+          ]
+        },
+        "cover": {
+          "type": "object",
+          "description": "Cover page configuration",
+          "properties": {
+            "template": {
+              "type": "string",
+              "description": "Token reference to cover page Markdown template"
+            },
+            "title": {
+              "type": "string",
+              "description": "Cover page title. May use Jinja2 {{ variable }} syntax."
+            },
+            "subtitle": {
+              "type": "string",
+              "description": "Cover page subtitle. May use Jinja2 {{ variable }} syntax."
+            },
+            "logo": {
+              "type": "string",
+              "description": "Token reference to logo image for cover page"
+            }
+          }
+        },
+        "pages": {
+          "type": "object",
+          "properties": {
+            "order": {
+              "type": "array",
+              "description": "Ordered list of page/section identifiers for report assembly",
+              "items": {
+                "type": "string"
+              }
+            },
+            "definitions": {
+              "type": "object",
+              "description": "Per-page configuration keyed by page identifier",
+              "additionalProperties": {
+                "type": "object",
+                "required": [
+                  "source_type"
+                ],
+                "properties": {
+                  "source_type": {
+                    "type": "string",
+                    "enum": [
+                      "jobset",
+                      "markdown",
+                      "custom_pdf"
+                    ],
+                    "description": "jobset: from JOBSET_OUTPUT_DIR; markdown: Jinja2 template; custom_pdf: fixed PDF file"
+                  },
+                  "destination": {
+                    "type": "string",
+                    "description": "Destination ID from .kicad_jobset (source_type=jobset)"
+                  },
+                  "template": {
+                    "type": "string",
+                    "description": "Token reference to .md template (source_type=markdown)"
+                  },
+                  "source_file": {
+                    "type": "string",
+                    "description": "Token reference to PDF file (source_type=custom_pdf)"
+                  },
+                  "include": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "section_label": {
+                    "type": "string",
+                    "description": "Section heading shown in report for this page"
+                  },
+                  "page_break_before": {
+                    "type": "boolean",
+                    "default": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "fabrication": {
+      "type": "object",
+      "description": "Fabrication ZIP package settings. See SpecGen_Tab_Report.md Fabrication subtab.",
+      "properties": {
+        "output_dir": {
+          "type": "string",
+          "description": "Token reference to FAB ZIP output folder. Default: {JOBSET_OUTPUT_DIR}/fab/"
+        },
+        "zip_filename_template": {
+          "type": "string",
+          "description": "Filename template for the fabrication ZIP. Supports project metadata tokens.",
+          "examples": [
+            "{project_name}_{revision}_{date}_fab.zip"
+          ]
+        },
+        "destinations": {
+          "type": "object",
+          "description": "Per-destination ZIP configuration keyed by destination ID from .kicad_jobset",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "include": {
+                "type": "boolean",
+                "description": "Whether to include this destination in the FAB ZIP"
+              },
+              "zip_folder": {
+                "type": "string",
+                "description": "Folder path within the ZIP. Ex: gerbers/"
+              }
+            }
+          }
+        },
+        "readme": {
+          "type": "object",
+          "description": "README file included in the FAB ZIP",
+          "properties": {
+            "include": {
+              "type": "boolean",
+              "default": true
+            },
+            "template": {
+              "type": "string",
+              "description": "Token reference to Jinja2 README Markdown template"
+            },
+            "filename": {
+              "type": "string",
+              "default": "README.md"
+            }
+          }
+        },
+        "checksums": {
+          "type": "object",
+          "description": "Checksum file included in the FAB ZIP",
+          "properties": {
+            "include": {
+              "type": "boolean",
+              "default": true
+            },
+            "algorithm": {
+              "type": "string",
+              "enum": [
+                "sha256",
+                "md5",
+                "sha1"
+              ],
+              "default": "sha256"
+            },
+            "filename": {
+              "type": "string",
+              "default": "checksums.sha256"
+            }
+          }
+        }
+      }
+    },
+    "ui": {
+      "type": "object",
+      "description": "Optional project UI state (active tab, panel sizes). Does not set dirty flag. Not committed.",
+      "additionalProperties": true
+    }
+  }
+}

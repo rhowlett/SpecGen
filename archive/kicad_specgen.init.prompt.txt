@@ -1,0 +1,54 @@
+You are a senior software architect.
+
+I am building a desktop application using PySide6.
+
+Application goals:
+* Tab-based workflow
+* KiCad_report_generator.md details tab definitions 
+* Project tab:
+  - app finds kicad_common.json readonly file and loads OS specific paths
+  - app finds kicad_specgen_local.json application file and loads last session file
+  - app finds <project>.kicad_pro file and loads readonly variables and values
+  - user optionally updates project
+  - user optionally updates files
+  - file metadata extracted
+* Variables tab:
+  - user defines variables and mappings
+* Processing engine:
+  - transforms data
+  - generates outputs
+* Output system:
+  - exports files
+  - supports future generators/plugins
+
+Requirements:
+- extensible architecture
+- testable
+- Python 3.10+
+- Each renderer type should use the same report schema
+- The block intermediate format must be well-typed using dataclasses
+- Include basic error handling: missing files, unknown file types, invalid manifest keys should all produce clear error messages
+- Add a dry-run flag that prints the file issues / unsupport format / etc... puts output in /tmp to view before overwriting
+- Setup scripts to run application on Ubuntu 22+, MacOS 12+, and Windows 10+
+- plugin-capable
+- typed models
+- separation between UI and business logic
+- future support for:
+ - CLI mode
+ - batch automation
+ - additional generators
+ - scripting support
+
+Dependencies:
+Use only these libraries (all pip-installable):
+- PySide6       # GUI Suport
+- markdown      # input & output render
+- weasyprint    # input & output render
+- python-docx   # input & output render
+- cairosvg      # input & output render
+- pandas        # input & output render
+- Pillow        # input & output render
+- watchdog      # file system monitoring — auto-reload when source files change
+- platformdirs  # cross-platform paths for saving user preferences/recent manifests
+- jinja2        # for ALL template substitution (not manual string replace), so that filters, conditionals, and loops are available in templates.
+

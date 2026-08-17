@@ -1,0 +1,211 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://kicad-specgen/schema/kicad_specgen_company.schema.json",
+  "title": "kicad_specgen_company",
+  "description": "Shared company/organization configuration for KiCad SpecGen",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "company"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "company": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Company name. Primary identifier (no separate company_id; single-company model)."
+        },
+        "description": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string",
+          "description": "Company website URL."
+        },
+        "address": {
+          "type": "object",
+          "description": "Company postal address.",
+          "properties": {
+            "street1": {
+              "type": "string"
+            },
+            "suite": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "zip": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            }
+          }
+        },
+        "logo": {
+          "type": "string",
+          "description": "Token reference to the company logo image. Must resolve inside KSG_COMPANY_DIR, e.g. {KSG_COMPANY_DIR}/SpecGen/common/logo.png"
+        }
+      }
+    },
+    "departments": {
+      "type": "object",
+      "description": "Internal department definitions keyed by dept_id. Each department contains teams keyed by team_id.",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "teams": {
+            "type": "object",
+            "description": "Teams within this department, keyed by team_id.",
+            "additionalProperties": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "paths": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "description": "Shared path references using token notation {TOKEN_NAME}/relative/path",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "clients": {
+      "type": "object",
+      "description": "External client definitions keyed by client_id. Mirrors the department/team structure: each client contains projects keyed by project_id.",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "paths": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "projects": {
+            "type": "object",
+            "description": "Client projects keyed by project_id.",
+            "additionalProperties": {
+              "type": "object",
+              "required": [
+                "name",
+                "status"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "active",
+                    "inactive"
+                  ],
+                  "description": "Project status. Stage 1: active | inactive. Expanded in Stage 2+ (hold, canceled, service, sunset)."
+                },
+                "paths": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "environments": {
+      "type": "object",
+      "description": "Named environment definitions",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "client",
+              "client_group",
+              "internal_project",
+              "sandbox"
+            ]
+          },
+          "client": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "team": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "templates": {
+      "type": "object",
+      "description": "Shared template file token references",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "assets": {
+      "type": "object",
+      "description": "Shared asset token references (CSS, logos, etc.)",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

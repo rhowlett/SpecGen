@@ -1,0 +1,2 @@
+-r requirements-stage2.txt
+# No new packages — kicad-cli is an external binary, not a Python package.

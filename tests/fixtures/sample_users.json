@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "users": [
+    {
+      "worker_id": "12345",
+      "display_name": "John Smith",
+      "preferred_name": "John",
+      "family_name": "Smith",
+      "email": "john@acme.com",
+      "department": "hardware",
+      "team": "power",
+      "job_title": "Senior EE",
+      "worker_type": "employee",
+      "active": true,
+      "is_admin": true,
+      "client_assignments": [{"client_id": "medical", "project_id": "pacemaker"}]
+    }
+  ]
+}

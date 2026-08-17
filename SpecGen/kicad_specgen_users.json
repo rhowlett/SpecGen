@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "users": [
+    {
+      "worker_id": "1",
+      "display_name": "xcellsior",
+      "preferred_name": "Richard",
+      "family_name": "Howlett",
+      "email": "dynorice@gmail.com",
+      "department": "None",
+      "team": "None",
+      "job_title": "Owner",
+      "worker_type": "hobby",
+      "active": true,
+      "admin": true
+    },
+    {
+      "worker_id": "2",
+      "display_name": "mop",
+      "preferred_name": "Iris",
+      "family_name": "Howlett",
+      "email": "na",
+      "department": "na",
+      "team": "na",
+      "job_title": "na",
+      "worker_type": "employee",
+      "active": true,
+      "admin": false
+    }
+  ]
+}

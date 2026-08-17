@@ -1,0 +1,26 @@
+"""Integration tests for services.validation_service."""
+import pytest
+from PySide6.QtWidgets import QApplication
+from core.app_state import AppState
+from core.specgen_local_config import LocalConfig
+from services.validation_service import ValidationService
+
+
+@pytest.fixture(scope="module")
+def qapp():
+    return QApplication.instance() or QApplication([])
+
+
+def test_validation_with_no_config(qapp):
+    state = AppState()
+    svc   = ValidationService(state)
+    report = svc.run_config_validation()
+    assert report.failures > 0
+
+
+def test_validation_complete_signal_fires(qapp, qtbot):
+    state = AppState()
+    svc   = ValidationService(state)
+    with qtbot.waitSignal(state.validation_complete, timeout=2000) as blocker:
+        svc.run_config_validation()
+    assert blocker.args[0].overall in ("pass", "warn", "fail")

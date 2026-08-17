@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "active_user": "12345",
+  "active_environment": "default",
+  "tools": {
+    "kicad_cli": "/usr/bin/kicad-cli",
+    "kicad_cli_source": "detected_linux_path",
+    "kicad_version": "9.0.3"
+  },
+  "tokens": {
+    "KSG_APP_DIR": "/home/user/kicad-specgen",
+    "KSG_SYSTEM_CONFIG_DIR": "/home/user/.config/kicad/9.0",
+    "KSG_COMPANY_DIR": "/home/user/CompanyRepo",
+    "KSG_COMPANY_SPECGEN_DIR": "/home/user/CompanyRepo/SpecGen/specgen",
+    "KSG_COMPANY_COMMON_DIR": "/home/user/CompanyRepo/SpecGen/common",
+    "KSG_USER_SPECGEN_DIR": "/home/user/CompanyRepo/SpecGen/Users/12345",
+    "KSG_USER_COMMON_DIR": "/home/user/CompanyRepo/SpecGen/Users/12345/common"
+  },
+  "setup": {
+    "setup_complete": true,
+    "last_setup_platform": "linux",
+    "dependency_stage": "stage1"
+  },
+  "last_session": {},
+  "recent_projects": [],
+  "skipped_tokens": [],
+  "preferences": {
+    "theme": "dark"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "company": {
+    "company_id": "personal",
+    "name": "BrickChip",
+    "description": "brickchip.com"
+  },
+  "clients": [],
+  "internal_teams": [],
+  "environments": [
+    {
+      "environment_id": "default",
+      "name": "Default",
+      "description": "Default environment"
+    }
+  ],
+  "paths": {},
+  "templates": {},
+  "assets": {}
+}

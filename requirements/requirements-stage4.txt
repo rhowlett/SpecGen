@@ -1,0 +1,2 @@
+-r requirements-stage3.txt
+WeasyPrint>=60.0

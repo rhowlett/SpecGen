@@ -1,0 +1,239 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://kicad-specgen/schema/kicad_specgen_local.schema.json",
+  "title": "kicad_specgen_local",
+  "description": "Local machine configuration for KiCad SpecGen",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "tokens"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "description": "Schema version. Current: 1. Increment on breaking changes.",
+      "enum": [
+        1
+      ]
+    },
+    "active_user": {
+      "type": "string",
+      "description": "worker_id of the active user from kicad_specgen_users.json"
+    },
+    "active_environment": {
+      "type": "string",
+      "description": "Environment ID from kicad_specgen_company.json environments"
+    },
+    "tools": {
+      "type": "object",
+      "description": "Local tool paths",
+      "properties": {
+        "kicad_cli": {
+          "type": "string",
+          "description": "Absolute path to kicad-cli executable"
+        },
+        "kicad_cli_source": {
+          "type": "string",
+          "enum": [
+            "detected_macos_app",
+            "detected_linux_path",
+            "detected_windows_path",
+            "user_configured"
+          ],
+          "description": "How kicad-cli was found: detected_macos_app (macOS app bundle), detected_linux_path (PATH or common Linux locations), detected_windows_path (Program Files or PATH), user_configured (manually set by user)"
+        },
+        "kicad_version": {
+          "type": "string",
+          "description": "KiCad version string, e.g. 9.0.x"
+        }
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "description": "Local absolute path token definitions. Keys must match ^KSG_[A-Z0-9_]+$",
+      "required": [
+        "KSG_APP_DIR",
+        "KSG_SYSTEM_CONFIG_DIR",
+        "KSG_COMPANY_DIR",
+        "KSG_COMPANY_SPECGEN_DIR",
+        "KSG_COMPANY_COMMON_DIR",
+        "KSG_USER_SPECGEN_DIR",
+        "KSG_USER_COMMON_DIR"
+      ],
+      "properties": {
+        "KSG_APP_DIR": {
+          "type": "string",
+          "description": "Root folder of the installed SpecGen application repository. Read-only: the application never writes here."
+        },
+        "KSG_SYSTEM_CONFIG_DIR": {
+          "type": "string",
+          "description": "OS KiCad user config folder containing kicad_specgen_local.json"
+        },
+        "KSG_COMPANY_DIR": {
+          "type": "string",
+          "description": "Root containing the shared SpecGen/ folder. May be a Git repo root."
+        },
+        "KSG_COMPANY_SPECGEN_DIR": {
+          "type": "string",
+          "description": "Shared team SpecGen resources folder. Writable. Must not be inside KSG_APP_DIR."
+        },
+        "KSG_COMPANY_COMMON_DIR": {
+          "type": "string",
+          "description": "Shared team common assets folder. Writable. Must not be inside KSG_APP_DIR."
+        },
+        "KSG_USER_SPECGEN_DIR": {
+          "type": "string",
+          "description": "Individual user's SpecGen resource folder. Writable. Must not be inside KSG_APP_DIR."
+        },
+        "KSG_USER_COMMON_DIR": {
+          "type": "string",
+          "description": "Individual user's common templates and assets folder. Writable. Must not be inside KSG_APP_DIR."
+        }
+      },
+      "patternProperties": {
+        "^KSG_[A-Z0-9_]+$": {
+          "type": "string",
+          "description": "Additional optional absolute path token"
+        }
+      },
+      "additionalProperties": false
+    },
+    "setup": {
+      "type": "object",
+      "properties": {
+        "setup_complete": {
+          "type": "boolean"
+        },
+        "last_setup_run": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "last_setup_platform": {
+          "type": "string",
+          "enum": [
+            "macos",
+            "linux",
+            "windows"
+          ]
+        },
+        "dependency_stage": {
+          "type": "string",
+          "enum": [
+            "stage1",
+            "stage2",
+            "stage3",
+            "stage4"
+          ],
+          "description": "Highest completed dependency stage. stage1: PySide6+jsonschema. stage2: adds Jinja2. stage3: no new packages. stage4: adds WeasyPrint."
+        }
+      }
+    },
+    "last_session": {
+      "type": "object",
+      "description": "State of the application at last clean exit. Written on every exit. Per-project state (active tab, environment) is in the .kicad_specgen file.",
+      "properties": {
+        "specgen_project": {
+          "type": "string",
+          "description": "Absolute path to the last opened .kicad_specgen file"
+        },
+        "project_name": {
+          "type": "string",
+          "description": "project.name cached from the last opened .kicad_specgen (for display without re-opening)"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "project.display_name cached from the last opened .kicad_specgen (for display without re-opening)"
+        },
+        "kicad_project_dir": {
+          "type": "string",
+          "description": "Absolute path to KICAD_PROJECT_DIR at last session (for display without re-opening)"
+        },
+        "window_geometry": {
+          "type": "object",
+          "description": "Main window position and size at last exit. Machine-specific \u2014 correct to store here.",
+          "properties": {
+            "x": {
+              "type": "integer"
+            },
+            "y": {
+              "type": "integer"
+            },
+            "width": {
+              "type": "integer"
+            },
+            "height": {
+              "type": "integer"
+            }
+          }
+        },
+        "last_opened_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the last project open event"
+        }
+      }
+    },
+    "recent_projects": {
+      "type": "array",
+      "description": "Up to 10 recently opened SpecGen projects, most recent first. Per-project state (environment, active tab) is in each .kicad_specgen file and is not duplicated here.",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "specgen_project"
+        ],
+        "properties": {
+          "specgen_project": {
+            "type": "string",
+            "description": "Absolute path to the .kicad_specgen file"
+          },
+          "project_name": {
+            "type": "string",
+            "description": "project.name cached from the .kicad_specgen file (for display without re-opening)"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "project.display_name cached from the .kicad_specgen file (for display without re-opening)"
+          },
+          "kicad_project_dir": {
+            "type": "string",
+            "description": "Absolute path to KICAD_PROJECT_DIR (for display in Open Recent submenu)"
+          },
+          "last_opened_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the most recent open of this project"
+          }
+        }
+      }
+    },
+    "skipped_tokens": {
+      "type": "array",
+      "description": "Token names suppressed on this machine via Missing Tokens dialog Skip option. Machine-local \u2014 does not affect other users. Cleared by the user from the Project tab.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "description": "User interface preferences. See SpecGen_GUI_Theme.md for theme specifications and colour palettes.",
+      "properties": {
+        "theme": {
+          "type": "string",
+          "enum": [
+            "system",
+            "light",
+            "dark",
+            "engineering_dark",
+            "ion_dark",
+            "ion_light"
+          ],
+          "default": "dark",
+          "description": "Active UI theme. system: OS-adaptive (resolves to light or dark at runtime). Default when absent or unrecognised: dark. See SpecGen_GUI_Theme.md for full palette specifications."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

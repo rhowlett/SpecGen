@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "company": {
+    "name": "Acme Engineering",
+    "description": "Test company",
+    "website": "https://acme.example.com",
+    "address": {"street1": "1 Main St", "city": "Springfield", "state": "IL", "zip": "62701", "country": "USA"},
+    "logo": "{KSG_COMPANY_DIR}/SpecGen/common/logo.png"
+  },
+  "departments": {
+    "hardware": {
+      "name": "Hardware Engineering",
+      "teams": {
+        "power": {"name": "Power Electronics"},
+        "rf": {"name": "RF Design"}
+      }
+    }
+  },
+  "clients": {
+    "medical": {
+      "name": "Medical Devices Inc",
+      "projects": {
+        "pacemaker": {"name": "Pacemaker Mk II", "status": "active"}
+      }
+    }
+  },
+  "environments": {
+    "default": {"type": "sandbox", "description": "Default"},
+    "med": {"type": "client", "client": "medical", "project": "pacemaker", "description": "Medical work"}
+  },
+  "paths": {}, "templates": {}, "assets": {}
+}

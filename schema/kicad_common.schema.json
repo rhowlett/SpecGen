@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://kicad-specgen/schema/kicad_common.schema.json",
+  "title": "kicad_common (partial, read-only)",
+  "description": "PARTIAL READ-ONLY reference schema. kicad_common.json is owned and written by KiCad, not by SpecGen. KiCad does NOT publish an official JSON Schema for this file; it validates settings internally in C++ (JSON_SETTINGS), with schema versions as compile-time integers and migrations as C++ functions. This schema therefore describes ONLY the subset of fields that SpecGen reads (the environment variable table). It intentionally permits all other properties and must never be used to write, reformat, or reject a kicad_common.json file. SpecGen reads this file; it does not validate KiCad's ownership of it.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "environment": {
+      "type": "object",
+      "description": "KiCad environment settings. SpecGen reads only environment.vars.",
+      "additionalProperties": true,
+      "properties": {
+        "vars": {
+          "description": "Map of environment variable name to value. KiCad 10 may serialize this as null when empty; SpecGen treats null as an empty map. SpecGen uses these as the lowest-priority token source.",
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            },
+            { "type": "null" }
+          ]
+        }
+      }
+    }
+  }
+}

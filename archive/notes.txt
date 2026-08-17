@@ -1,0 +1,31 @@
+Check for GAPs with the following:
+Updating/Changing the application framework to address standalone and repo behaviors.  Note that at any project should be able to work either way without making modification to a users workspace.
+
+This application is always cloned from the git repo and should have the option to update itself from that repo, all the default template files will live in this repo, the user can not push changes to git.
+ *  The application setup asks the user to point to a company repo SpecGen for company any user info.
+   -  One of the purposes of the setup is to either sync with already estabished user company data, or to create that data and a repo to sync with, or to create a local machine data set for standalone.
+   -  If it exists, then the setup uses this information for most of the information needed to complete the setup.
+   -  If it doesn't exist then the setup will as for all company, clients, teams, projects, etc... and related information.
+     -  Note this can also be update via the application if the user wants to skip most of this part of the setup.
+     -  Once the data is collected, the user should be asked if they want to create a company repo or treat this as a standalone environment
+     -  There should be a check to make sure this repo doesn't exist
+     -  Changing the filename from kicad_specgen.json to kicad_specgen_local.json
+     -  The location of the user company data/repo should be stored in the kicad_specgen_local.json in the OS specific location where the kicad_commmon.json file is stored.
+     -  The the kicad_specgen_local.json file will contain local machine path information needed for SpecGen to operation correctly. 
+        -  EX: company related infromation used by multiple users or in standalone need to be collected in a seperate company folder/repo
+     -  The user's company info is stored in a seperate company repo in a folder called SpecGen.
+       -  This can be any repo as long as the SpecGen folder can be added to allow other users to sync to this folder
+       -  All the client specific information is saved in the SpecGen/kicad_specgen_company.json
+       -  Optionally, all the user specific information in hropenstandards.org (employee ID, manager ID, firstname, lastname, email, phone, etc.. ) is saved in the kicad_specgen_users.json
+       -  The user's company repo where the SpecGen folder is becomes an ideal location for saving company assets, if they are saved elsewhere then it becomes difficult to sync accross systems.
+ *  Projects that are standalone are not synced with a git repo (if they are in a repo, the <kicad_project_dir>/specgen folder should be added to the .gitignore), however, if they are not in a repo then they can be moved to a repo and allowed to sync then.
+   -  Note, doing this may break KiCad paths, so if the application moves a kicad project folder, it should check kicad_* files for any absolution path dependancies and warn the user of this potential risk.
+   -  There are ways within KiCad to create machine independant variables for libs that make the project portable.
+   -  This removes the risk of moving a kicad project folder.
+     -  EX of a risk.
+       -  Using a common schematic and using a realtive path that goes outside the project parent folder or an absolute path.
+ *  When the app opens a <project>.kicad_specgen that is pointing to a client that doesn't exist within <user_company_repo>/SpecGen/kicad_specgen.json, then it should open a dialog to fill in the missing info.
+   - The <project>.kicad_specgen TOML file should contain this information and write it back to the <user_company_repo>/SpecGen/kicad_specgen.json and add the path to the client repo to kicad_specgen_local.json
+
+missing where KSG_USER_SPECGEN_DIR is located - suggest: SpecGen/Users/<employee_id>/
+missing where KSG_USER_COMMON_DIR is located - suggest: SpecGen/Users/<employee_id>/common/

@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://kicad-specgen/schema/kicad_specgen_users.schema.json",
+  "title": "kicad_specgen_users",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "users"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "users": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "worker_id",
+          "display_name",
+          "active"
+        ],
+        "properties": {
+          "worker_id": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "preferred_name": {
+            "type": "string"
+          },
+          "family_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "department": {
+            "type": "string",
+            "description": "dept_id referencing a key in company.departments"
+          },
+          "team": {
+            "type": "string",
+            "description": "team_id referencing a key in company.departments.<department>.teams"
+          },
+          "job_title": {
+            "type": "string"
+          },
+          "worker_type": {
+            "type": "string",
+            "enum": [
+              "employee",
+              "contractor",
+              "external",
+              "hobby"
+            ]
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "is_admin": {
+            "type": "boolean"
+          },
+          "client_assignments": {
+            "type": "array",
+            "description": "Client/project assignments for this user.",
+            "items": {
+              "type": "object",
+              "required": [
+                "client_id"
+              ],
+              "properties": {
+                "client_id": {
+                  "type": "string",
+                  "description": "Key in company.clients"
+                },
+                "project_id": {
+                  "type": "string",
+                  "description": "Key in company.clients.<client_id>.projects (optional)"
+                }
+              }
+            }
+          },
+          "paths": {
+            "type": "object",
+            "description": "User path token references",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
