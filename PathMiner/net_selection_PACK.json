@@ -1,0 +1,57 @@
+{
+  "_meta": {
+    "version": "0.1",
+    "description": "PACK_P audit. Sense pins carry no load current, so the 8 A default is overridden per pair; the pour is only 1.9:1 so the two big pairs are priced with the mesh.",
+    "board": "Ref_PowerBank_injoinic_IP5385_v0.8.kicad_pcb",
+    "generated": "2026-08-22T20:50:17"
+  },
+  "select": [
+    "/Reference Design/PACK_P"
+  ],
+  "ignore": [
+    "GNDREF"
+  ],
+  "options": {
+    "sections": {
+      "assumptions": true,
+      "stackup": true,
+      "selection": true,
+      "summary": true,
+      "detail": true,
+      "notes": true
+    },
+    "hole_convention": "bit",
+    "length_convention": "centre",
+    "outer_plating_adds": true,
+    "zone_model": "ladder",
+    "plating_um": 18.0,
+    "mesh_pitch_mm": 0.125,
+    "ambient_c": 25.0,
+    "current_a": 8.0,
+    "signal_voltage_v": 8.4
+  },
+  "nets": {
+    "/Reference Design/PACK_P": {
+      "pairs": "from-source",
+      "source": "JP1.B",
+      "pair_overrides": {
+        "JP1.B>U2.CSP2": {
+          "current_a": 0.001,
+          "zone_model": "mesh",
+          "mesh_pitch_mm": 0.25
+        },
+        "JP1.B>U2.BAT": {
+          "current_a": 0.001,
+          "zone_model": "mesh",
+          "mesh_pitch_mm": 0.25
+        },
+        "JP1.B>C15.1": {
+          "current_a": 0.05
+        },
+        "JP1.B>C39.2": {
+          "current_a": 0.05
+        }
+      }
+    }
+  }
+}

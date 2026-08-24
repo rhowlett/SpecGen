@@ -1,0 +1,358 @@
+2026-06-17 12:11:14  INFO      __main__                  KiCad SpecGen starting
+2026-06-17 12:11:14  INFO      core.specgen_local_config  local config loaded: /Users/Richard.Howlett/Library/Preferences/kicad/10.0/kicad_specgen_local.json
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 62, in main
+    config_service.load_all(local_config_path)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/services/config_service.py", line 37, in load_all
+    local_cfg = local_mod.load(local_path)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/specgen_local_config.py", line 61, in load
+    log.info("local config loaded: %s", path)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1446, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'local config loaded: %s'
+Arguments: (PosixPath('/Users/Richard.Howlett/Library/Preferences/kicad/10.0/kicad_specgen_local.json'),)
+2026-06-17 12:11:14  INFO      core.specgen_company_config  company config loaded: /Users/Richard.Howlett/Documents/GitHub/kicad_specgen/SpecGen/kicad_specgen_company.json (company_id=personal)
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 62, in main
+    config_service.load_all(local_config_path)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/services/config_service.py", line 44, in load_all
+    company_cfg = company_mod.load(company_path)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/specgen_company_config.py", line 58, in load
+    log.info("company config loaded: %s (company_id=%s)", path, cfg.company_id)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1446, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'company config loaded: %s (company_id=%s)'
+Arguments: (PosixPath('/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/SpecGen/kicad_specgen_company.json'), 'personal')
+2026-06-17 12:11:14  INFO      core.specgen_user_config  users config loaded: /Users/Richard.Howlett/Documents/GitHub/kicad_specgen/SpecGen/kicad_specgen_users.json (0 users)
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 62, in main
+    config_service.load_all(local_config_path)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/services/config_service.py", line 52, in load_all
+    users_cfg = users_mod.load(users_path)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/specgen_user_config.py", line 40, in load
+    log.info("users config loaded: %s (%d users)", path, len(cfg.users))
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1446, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'users config loaded: %s (%d users)'
+Arguments: (PosixPath('/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/SpecGen/kicad_specgen_users.json'), 0)
+2026-06-17 12:11:14  WARNING   core.kicad_env            kicad_env: failed to read /Users/Richard.Howlett/Library/Preferences/kicad/10.0/kicad_common.json: object of type 'NoneType' has no len()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/kicad_env.py", line 27, in load_kicad_vars
+    log.debug("kicad_env: loaded %d vars from %s", len(vars_), path)
+TypeError: object of type 'NoneType' has no len()
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 62, in main
+    config_service.load_all(local_config_path)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/services/config_service.py", line 57, in load_all
+    self._rebuild_tokens()
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/services/config_service.py", line 197, in _rebuild_tokens
+    kicad_vars = load_kicad_vars(Path(sys_cfg_dir))
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/kicad_env.py", line 30, in load_kicad_vars
+    log.warning("kicad_env: failed to read %s: %s", path, e)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1458, in warning
+    self._log(WARNING, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'kicad_env: failed to read %s: %s'
+Arguments: (PosixPath('/Users/Richard.Howlett/Library/Preferences/kicad/10.0/kicad_common.json'), TypeError("object of type 'NoneType' has no len()"))
+2026-06-17 12:11:14  DEBUG     services.config_service   config_service: token table rebuilt (5 tokens)
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 62, in main
+    config_service.load_all(local_config_path)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/services/config_service.py", line 57, in load_all
+    self._rebuild_tokens()
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/services/config_service.py", line 206, in _rebuild_tokens
+    log.debug("config_service: token table rebuilt (%d tokens)", len(table))
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1434, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'config_service: token table rebuilt (%d tokens)'
+Arguments: (5,)
+2026-06-17 12:11:14  INFO      ui.theme                  theme: dark applied
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 72, in main
+    theme_mod.apply_theme(theme_name)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/theme.py", line 59, in apply_theme
+    log.info("theme: %s applied", theme_name)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1446, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'theme: %s applied'
+Arguments: ('dark',)
+2026-06-17 12:11:14  DEBUG     ui.tabs.logs_tab          LogsTab: connected to QtLogHandler
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 75, in main
+    window = MainWindow(app_state, config_service, validation_service)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/main_window.py", line 43, in __init__
+    self._build_central_widget()
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/main_window.py", line 97, in _build_central_widget
+    self._logs_tab      = LogsTab()
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/tabs/logs_tab.py", line 22, in __init__
+    self._connect_handler()
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/tabs/logs_tab.py", line 30, in _connect_handler
+    log.debug("LogsTab: connected to QtLogHandler")
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1434, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'LogsTab: connected to QtLogHandler'
+Arguments: ()
+2026-06-17 12:11:14  INFO      ui.tabs.logs_tab          LogsTab initialised
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 75, in main
+    window = MainWindow(app_state, config_service, validation_service)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/main_window.py", line 43, in __init__
+    self._build_central_widget()
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/main_window.py", line 97, in _build_central_widget
+    self._logs_tab      = LogsTab()
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/tabs/logs_tab.py", line 23, in __init__
+    log.info("LogsTab initialised")
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1446, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'LogsTab initialised'
+Arguments: ()
+2026-06-17 12:11:14  INFO      ui.main_window            MainWindow initialised
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 75, in main
+    window = MainWindow(app_state, config_service, validation_service)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/main_window.py", line 47, in __init__
+    log.info("MainWindow initialised")
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1446, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'MainWindow initialised'
+Arguments: ()
+2026-06-17 12:11:14  INFO      __main__                  MainWindow shown
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 87, in main
+    log.info("MainWindow shown")
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1446, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'MainWindow shown'
+Arguments: ()
+2026-06-17 12:11:33  INFO      core.specgen_local_config  local config saved: /Users/Richard.Howlett/Library/Preferences/kicad/10.0/kicad_specgen_local.json
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 89, in main
+    return app.exec()
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/main_window.py", line 339, in closeEvent
+    self._cs.save_session(geometry, project_ref)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/services/config_service.py", line 146, in save_session
+    local_mod.save(cfg)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/specgen_local_config.py", line 83, in save
+    log.info("local config saved: %s", target)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1446, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'local config saved: %s'
+Arguments: (PosixPath('/Users/Richard.Howlett/Library/Preferences/kicad/10.0/kicad_specgen_local.json'),)
+2026-06-17 12:11:33  INFO      services.config_service   config_service: last_session saved
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 60, in emit
+    self.formatTime(record, "%Y-%m-%d %H:%M:%S"),
+AttributeError: '_QtLogHandler' object has no attribute 'formatTime'
+Call stack:
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 93, in <module>
+    sys.exit(main())
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/app.py", line 89, in main
+    return app.exec()
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/ui/main_window.py", line 339, in closeEvent
+    self._cs.save_session(geometry, project_ref)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/services/config_service.py", line 147, in save_session
+    log.info("config_service: last_session saved")
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1446, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/logging/__init__.py", line 952, in handle
+    self.emit(record)
+  File "/Users/Richard.Howlett/Documents/GitHub/kicad_specgen/core/logging_utils.py", line 66, in emit
+    self.handleError(record)
+Message: 'config_service: last_session saved'
+Arguments: ()
