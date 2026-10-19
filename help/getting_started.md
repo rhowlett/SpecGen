@@ -8,7 +8,7 @@ From the SpecGen application folder:
 python setup.py
 ```
 
-This detects your platform, creates a `.venv`, installs dependencies,
+This detects your platform, creates a `.venv` (or reuses `$SHARED_VENV` when set), installs dependencies,
 locates `kicad-cli`, and writes the local configuration file.
 
 ## 2. Configure kicad-cli

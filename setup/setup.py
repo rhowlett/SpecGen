@@ -28,7 +28,7 @@ from core.file_ops import ensure_dir
 import core.specgen_local_config as local_mod
 import core.specgen_company_config as company_mod
 import core.specgen_user_config as users_mod
-from setup.setup_utils import create_venv, install_requirements
+from setup.setup_utils import create_venv, install_requirements, venv_dir
 
 configure_logging()
 log = logging.getLogger("setup")
@@ -70,7 +70,7 @@ def run_setup(stage: str = "stage1", launch: bool = False,
     venv_ok = False
     try:
         venv = create_venv(app_dir)
-        install_requirements(venv, stage)
+        install_requirements(venv, stage, app_dir)
         venv_ok = True
     except Exception as e:
         log.error("Phase 2 failed: %s", e)
@@ -175,9 +175,9 @@ def run_setup(stage: str = "stage1", launch: bool = False,
         if venv_ok:
             log.info("  1. Activate the virtual environment:")
             if platform == "windows":
-                log.info("       .venv\\Scripts\\activate")
+                log.info("       %s\\Scripts\\activate", venv_dir(app_dir))
             else:
-                log.info("       source .venv/bin/activate")
+                log.info("       source %s/bin/activate", venv_dir(app_dir))
             log.info("  2. Run the application:")
             log.info("       python app.py")
         else:
@@ -193,12 +193,12 @@ def run_setup(stage: str = "stage1", launch: bool = False,
 
 
 def _launch_app(app_dir: Path, venv_ok: bool, platform: str) -> None:
-    """Launch app.py, preferring the .venv Python if available."""
+    """Launch app.py, preferring the venv Python if available."""
     if venv_ok:
         if platform == "windows":
-            python = app_dir / ".venv" / "Scripts" / "python.exe"
+            python = venv_dir(app_dir) / "Scripts" / "python.exe"
         else:
-            python = app_dir / ".venv" / "bin" / "python"
+            python = venv_dir(app_dir) / "bin" / "python"
     else:
         python = Path(sys.executable)
 

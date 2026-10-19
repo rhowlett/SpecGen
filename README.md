@@ -31,7 +31,7 @@ cd kicad-specgen
 
 ### 2. Run setup
 
-Setup detects your platform, creates a `.venv`, installs Python dependencies,
+Setup detects your platform, creates a `.venv` (or reuses `$SHARED_VENV` when set), installs Python dependencies,
 locates `kicad-cli`, and writes the local configuration file to your KiCad
 user config directory.
 
@@ -90,7 +90,7 @@ use **Edit → Configure kicad-cli...** to set the path manually.
 
 ```bash
 # macOS / Linux
-source .venv/bin/activate
+source "${SHARED_VENV:-.venv}/bin/activate"
 
 # Windows
 .venv\Scripts\activate

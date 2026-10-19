@@ -134,11 +134,12 @@ class SetupWindow(QDialog):
         UninstallDialog(self).exec()
 
     def _launch_app(self) -> None:
-        import subprocess, sys
+        import os, subprocess, sys
         app_dir = Path(__file__).resolve().parent.parent
-        venv_py = app_dir / ".venv" / "bin" / "python"
+        venv = Path(os.environ.get("SHARED_VENV") or app_dir / ".venv")
+        venv_py = venv / "bin" / "python"
         if not venv_py.exists():
-            venv_py = app_dir / ".venv" / "Scripts" / "python.exe"
+            venv_py = venv / "Scripts" / "python.exe"
         python = str(venv_py) if venv_py.exists() else sys.executable
         subprocess.Popen([python, str(app_dir / "app.py")], cwd=str(app_dir))
         self.accept()

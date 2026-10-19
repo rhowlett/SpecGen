@@ -4,6 +4,7 @@ progress reporting.
 """
 from __future__ import annotations
 import logging
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -11,13 +12,19 @@ from pathlib import Path
 log = logging.getLogger(__name__)
 
 
+def venv_dir(app_dir: Path) -> Path:
+    """Return the venv to use: $SHARED_VENV when set, else app_dir/.venv."""
+    shared = os.environ.get("SHARED_VENV")
+    return Path(shared) if shared else Path(app_dir) / ".venv"
+
+
 def create_venv(app_dir: Path) -> Path:
-    """Create .venv inside app_dir. Skip if already inside it."""
-    venv_path = Path(app_dir) / ".venv"
+    """Create the venv (see venv_dir). Skip if it already exists."""
+    venv_path = venv_dir(app_dir)
     if venv_path.exists():
-        log.info("setup_utils: .venv already exists at %s", venv_path)
+        log.info("setup_utils: venv already exists at %s", venv_path)
         return venv_path
-    log.info("setup_utils: creating .venv at %s", venv_path)
+    log.info("setup_utils: creating venv at %s", venv_path)
     result = subprocess.run(
         [sys.executable, "-m", "venv", str(venv_path)],
         capture_output=True, text=True,
@@ -27,9 +34,14 @@ def create_venv(app_dir: Path) -> Path:
     return venv_path
 
 
-def install_requirements(venv_path: Path, stage: str = "stage1") -> None:
-    """Install requirements for the given stage into venv_path."""
-    app_dir = venv_path.parent
+def install_requirements(venv_path: Path, stage: str = "stage1",
+                         app_dir: Path | None = None) -> None:
+    """Install requirements for the given stage into venv_path.
+
+    app_dir defaults to venv_path.parent; pass it when the venv is shared
+    and lives outside the app directory.
+    """
+    app_dir = Path(app_dir) if app_dir else venv_path.parent
     req_file = app_dir / "requirements" / f"requirements-{stage}.txt"
     if not req_file.exists():
         raise FileNotFoundError(f"Requirements file not found: {req_file}")

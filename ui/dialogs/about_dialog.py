@@ -1,6 +1,6 @@
 """about_dialog.py — About KiCad SpecGen dialog."""
 from __future__ import annotations
-import platform, sys
+import os, platform, sys
 from pathlib import Path
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QFormLayout,
@@ -45,8 +45,10 @@ class AboutDialog(QDialog):
         form2.addRow("KSG_APP_DIR:",          QLabel(ksg_app))
         form2.addRow("Local Config:",         QLabel(sys_cfg))
 
-        # .venv status
-        venv_path = Path(ksg_app) / ".venv" if ksg_app != "(not set)" else None
+        # venv status ($SHARED_VENV when set, else KSG_APP_DIR/.venv)
+        shared = os.environ.get("SHARED_VENV")
+        venv_path = (Path(shared) if shared else
+                     Path(ksg_app) / ".venv" if ksg_app != "(not set)" else None)
         venv_active = sys.prefix == str(venv_path) if venv_path else False
         venv_label = f"{venv_path}  {'✓ Active' if venv_active else '⚠ Not active'}"
         form2.addRow(".venv:", QLabel(venv_label))
