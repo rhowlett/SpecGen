@@ -1,3 +1,17 @@
+# v0.1
+################################################################################
+#  Project   : SpecGen
+#  File      : about_dialog.py
+#  Copyright : (c) 2026 brickChip and Richard Howlett. All rights reserved.
+#  Author    : Richard Howlett <rhowlett@eenerd.com>
+#  License   : PolyForm Noncommercial 1.0.0. Free for noncommercial use;
+#              commercial use requires written permission from the owner.
+#              Full terms in LICENSE at the project root.
+#  Warranty  : None. Provided as is; the owner is not liable for any
+#              damages arising from its use (No Liability, LICENSE).
+#  SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+################################################################################
+
 """about_dialog.py — About KiCad SpecGen dialog."""
 from __future__ import annotations
 import os, platform, sys
@@ -55,7 +69,13 @@ class AboutDialog(QDialog):
         layout.addLayout(form2)
 
         layout.addWidget(QLabel("─" * 48))
-        layout.addWidget(QLabel("© 2026 KiCad SpecGen Contributors"))
+        layout.addWidget(QLabel("© 2026 brickChip and Richard Howlett"))
+        notice = QLabel(
+            "PolyForm Noncommercial 1.0.0: free for noncommercial use;\n"
+            "commercial use needs written permission (rhowlett@eenerd.com).\n"
+            "Provided as is, with no warranty and no liability.")
+        notice.setWordWrap(True)
+        layout.addWidget(notice)
         layout.addStretch()
 
         btn = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)

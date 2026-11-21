@@ -295,6 +295,41 @@ until the relevant specifications reflect it.
 5. Update the authoritative documents in `specification/` for any change that
    affects design, schema, terminology, or behavior.
 
-## License
+<!-- BRICKCHIP-LICENSE:BEGIN -->
+## Copyright & License
 
-KiCad SpecGen is released under the MIT License. See [LICENSE](LICENSE) for details.
+```text
+################################################################################
+#                                                                              #
+# ███████  ███████    ██ ███████  ██   ██     ███████  ██   ██    ██ ███████   #
+# ██   ██  ██   ██    ██ ██   ██  ██   ██     ██   ██  ██   ██    ██ ██   ██   #
+# ██   ██  ██   ██    ██ ██       ██ ██       ██       ██   ██    ██ ██   ██   #
+# ████████ ████████  ███ ███      ████████    ███      ████████  ███ ███████   #
+# ███  ███ ███  ███  ███ ███      ███  ███    ███      ███  ███  ███ ███       #
+# ███  ███ ███  ███  ███ ███      ███  ███    ███      ███  ███  ███ ███       #
+# ███  ███ ███  ███  ███ ███  ███ ███  ███    ███  ███ ███  ███  ███ ███       #
+# ████████ ███  ███  ███ ████████ ███  ███    ████████ ███  ███  ███ ███       #
+#                                                                              #
+################################################################################
+```
+
+**Project:** SpecGen  
+**Copyright:** © 2026 brickChip and Richard Howlett. All rights reserved.  
+**Owner / Author:** Richard Howlett · rhowlett@eenerd.com
+
+All source code, documentation and other files in this project are licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE) (SPDX: `PolyForm-Noncommercial-1.0.0`).
+
+- **Free** to use, copy, modify and share for any noncommercial purpose: personal, hobby, research, education.
+- **Commercial use** requires a separate written license. This includes selling it, building it into a product or paid service, or using it in for-profit work. Contact rhowlett@eenerd.com.
+- **No warranty, no liability.** It is provided as is. As far as the law allows, the owner is not responsible for any damage or loss arising from its use (see *No Liability* in LICENSE).
+
+### Entry points
+
+Every file that starts something in this project carries a `BRICKCHIP-ENTRY-POINT` line, so `grep -rn BRICKCHIP-ENTRY-POINT .` lists them all:
+
+| File | Runs |
+|---|---|
+| `app.py` | Launch the SpecGen GUI |
+| `setup/setup.py` | Install, configure and launch SpecGen (GUI or --headless) |
+
+<!-- BRICKCHIP-LICENSE:END -->
