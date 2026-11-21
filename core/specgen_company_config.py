@@ -1,3 +1,17 @@
+# v0.1
+################################################################################
+#  Project   : SpecGen
+#  File      : specgen_company_config.py
+#  Copyright : (c) 2026 brickChip and Richard Howlett. All rights reserved.
+#  Author    : Richard Howlett <rhowlett@eenerd.com>
+#  License   : PolyForm Noncommercial 1.0.0. Free for noncommercial use;
+#              commercial use requires written permission from the owner.
+#              Full terms in LICENSE at the project root.
+#  Warranty  : None. Provided as is; the owner is not liable for any
+#              damages arising from its use (No Liability, LICENSE).
+#  SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+################################################################################
+
 """
 specgen_company_config.py — Load/validate/save kicad_specgen_company.json.
 Returns typed CompanyConfig dataclass. No token resolution. No GUI.
